@@ -1,12 +1,14 @@
 // index.js is a express server
 const connectToMongo = require('./db');
 
-const express = require('express')
+const express = require('express');
+const { db } = require('./models/User');
 
 connectToMongo();
 
 const app = express()
-const port = 3000
+// Changing port from 3000 to 5000 bcz on port 3000 react app will work
+const port = 5000
 
 app.use(express.json())
 
