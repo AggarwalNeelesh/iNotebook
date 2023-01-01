@@ -8,7 +8,7 @@ var jwt = require("jsonwebtoken");
 var fetchuser = require("../middleware/fetchuser");
 const JWT_SECRET = "BlueMoonDevil";
 
-///////////Route 1 /////////////////////////////
+/////////// Route 1 /////////////////////////////
 // Create a User using : POST "/api/auth/createuser" . Dosen't require Auth
 // No login required
 router.post(
@@ -56,7 +56,7 @@ router.post(
     }
   }
 );
-///////////Route 2 /////////////////////////////
+/////////// Route 2 /////////////////////////////
 // Authentication a User using : POST "/api/auth/login" .No login required
 router.post(
   "/login",
@@ -103,7 +103,7 @@ router.post(
     }
   }
 );
-///////////Route 3 /////////////////////////////
+/////////// Route 3 /////////////////////////////
 // Get loggedin User Details using POST "/api/auth/getuser" Login required
 
 router.post("/getuser", fetchuser, async (req, res) => {
