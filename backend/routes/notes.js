@@ -52,7 +52,7 @@ router.post(
   }
 );
 
-///////////////////////// Route 1 /////////////////////////////
+///////////////////////// Route 3 /////////////////////////////
 // Update an existing Note using PUT "/api/notes/updatenote" Login required
 
 router.put("/updatenote/:id", fetchuser, async (req, res) => {
@@ -76,6 +76,29 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
         // Updating note in database
         note = await Notes.findByIdAndUpdate(req.params.id, {$set: newNote}, {new:true});
         res.json(note);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server error");
+    }
+});
+
+///////////////////////// Route 4 /////////////////////////////
+// Fetch All Notes using DELETE "/api/notes/fetchallnotes" Login required
+
+router.delete("/deletenote/:id", fetchuser, async (req, res) => {
+    try {
+        // Find the Note to be deleted
+        let note = await Notes.findById(req.params.id);
+
+        // note Not found 
+        if(!note)return res.status(404).send("Not Found")
+
+        // If a user tries to delete note of another user, then deny it.
+        if(note.user.toString() !== req.user.id)return res.status(401).send("Access Denied !");
+
+        // Updating note in database
+        note = await Notes.findByIdAndDelete(req.params.id);
+        res.json({"Success": "Note has been deleted", note:note});
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server error");
