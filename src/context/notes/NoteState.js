@@ -13,7 +13,7 @@ const NoteState = (props)=>{
           "__v": 0
         },
         {
-          "_id": "63b1df73cc6c180b13cf6f92",
+          "_id": "63b1df73cc6c180b13cf6f2",
           "user": "63b09af1ff48f4207f885d05",
           "title": "What it is to be like learning alone ?",
           "description": "It is the best way to purify our mind and soul , keeping our productivity at its pinnacle.",
@@ -21,7 +21,7 @@ const NoteState = (props)=>{
           "date": "2023-01-01T19:30:59.606Z",
           "__v": 0
         },{
-            "_id": "63b1d32f90e5181d2365f532",
+            "_id": "63b1d32f90e5181d2365f53",
             "user": "63b09af1ff48f4207f885d05",
             "title": "What it is to be like learning alone ?",
             "description": "It is the best way to purify our mind and soul , keeping our productivity at its pinnacle.",
@@ -30,7 +30,7 @@ const NoteState = (props)=>{
             "__v": 0
           },
           {
-            "_id": "63b1d32f90e5181d2365f532",
+            "_id": "63bd32f90e5181d2365f53",
             "user": "63b09af1ff48f4207f885d05",
             "title": "What it is to be like learning alone ?",
             "description": "It is the best way to purify our mind and soul , keeping our productivity at its pinnacle.",
@@ -39,7 +39,7 @@ const NoteState = (props)=>{
             "__v": 0
           },
           {
-            "_id": "63b1d32f90e5181d2365f532",
+            "_id": "63b1d32f90e511d2365f532",
             "user": "63b09af1ff48f4207f885d05",
             "title": "What it is to be like learning alone ?",
             "description": "It is the best way to purify our mind and soul , keeping our productivity at its pinnacle.",

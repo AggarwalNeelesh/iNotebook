@@ -5,6 +5,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import React from "react";
 import NoteState from "./context/notes/NoteState";
+import Alert from "./components/Alert";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
         {/*Wrapping all components inside NoteState so that they can all use its state varibales */}
         <Router>
           <Navbar />
+          <Alert message= "Hi"/>
           <div className="container">
             <Routes>
               <Route exact path="/" element={<Home />} />
