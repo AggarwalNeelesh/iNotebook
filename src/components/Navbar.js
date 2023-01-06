@@ -1,13 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
-import React, {useEffect} from "react";
+import React from "react";
 
 
 const Navbar = () => {
   let location = useLocation();
-  useEffect(() => {
-    console.log(location.pathname);
-    }, [location]);
-    
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <Link className="navbar-brand" to="/">

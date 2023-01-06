@@ -1,7 +1,9 @@
-import React from 'react'
-
+import React, {useContext} from 'react'
+import noteContext from '../context/notes/noteContext'
 const Noteitem = (props) => {
     const note = props.note;
+    const context = useContext(noteContext);
+    const {deleteNote} = context; // De structuring
   return (
     <div className="card col-md-3 mx-2 my-3">
     <div className="card-body">
@@ -9,7 +11,7 @@ const Noteitem = (props) => {
         <p className="card-text">{note.description}</p>
         <i className="fa-regular fa-plus mx-2"></i>
         <i className="fa-solid fa-pen-to-square mx-2"></i>
-        <i className="fa-solid fa-trash mx-2"></i>
+        <i className="fa-solid fa-trash mx-2" onClick={()=>{deleteNote(note._id)}}></i>
     </div>
     </div>
   )
