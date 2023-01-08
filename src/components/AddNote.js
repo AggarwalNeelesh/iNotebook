@@ -1,18 +1,19 @@
 import React , { useContext , useState }from 'react'
 import noteContext from '../context/notes/noteContext'
 const AddNote = () => {
-    const context = useContext(noteContext);
+    const context = useContext(noteContext); //Using Context
     const {addNote} = context; // De structuring
-
+    //Creating state
     const [note, setNote] = useState({title:"", description:"", tag:"default"})
 
+    // Adding note
     const handleClick = (e)=>{
         e.preventDefault();
         addNote(note.title, note.description, note.tag);
     }
-
+    // Changing state of note when typing in textfield
     const onChange = (e)=>{
-        // ...note => jo chiz note me hai vo rahe
+        // ...note => jo chiz note me phele se hai vo rahe
         // baki usme ab ye chiz add karo ya overwrite karo
         setNote({...note, [e.target.name]:e.target.value})
     }
