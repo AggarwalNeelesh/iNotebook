@@ -4,7 +4,7 @@ const AddNote = () => {
     const context = useContext(noteContext); //Using Context
     const {addNote} = context; // De structuring
     //Creating state
-    const [note, setNote] = useState({title:"", description:"", tag:"default"})
+    const [note, setNote] = useState({title:"", description:"", tag:""})
 
     // Adding note
     const handleClick = (e)=>{
@@ -33,10 +33,6 @@ const AddNote = () => {
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Tag</label>
           <input type="text" className="form-control" id="tag" name="tag" onChange={onChange} placeholder="tag"/>
-        </div>
-        <div className="form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
-            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
         </div>
         <button type="submit" className="btn btn-primary my-3" onClick={handleClick}>Add Note</button>
       </form>

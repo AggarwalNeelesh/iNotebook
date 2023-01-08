@@ -48,6 +48,7 @@ const NoteState = (props)=>{
         };
         // adding note in notes array
         setNotes(notes.concat(note));
+        getNotes();
       }
 
       // Delete a note
