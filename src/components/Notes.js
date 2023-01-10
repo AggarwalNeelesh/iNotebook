@@ -4,20 +4,22 @@ import AddNote from './AddNote';
 import Noteitem from './Noteitem';
 const Notes = () => {
     const context = useContext(noteContext);
-    const {notes, getNotes} = context; // De structuring
-    const [note, setNote] = useState({etitle:"", edescription:"", etag:""});
+    const {notes, getNotes, editNote} = context; // De structuring
+    const [note, setNote] = useState({id:"",etitle:"", edescription:"", etag:""});
     useEffect(() => {
       getNotes();
     }, [])
     const ref = useRef(null)
+    const refClose = useRef(null)
     const updateNote =(currentNote)=>{
         ref.current.click();
-        setNote({etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
+        setNote({id:currentNote._id ,etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag});
     }
 
     const handleClick = (e)=>{
       console.log("Updating note",note);
-      e.preventDefault();
+      editNote(note.id, note.etitle, note.edescription, note.etag);
+      refClose.current.click();
     }
     // Changing state of note when typing in textfield
     const onChange = (e)=>{
@@ -32,7 +34,7 @@ const Notes = () => {
       Launch demo modal
     </button>
 
-    <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -56,7 +58,7 @@ const Notes = () => {
           </form>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
           </div>
         </div>

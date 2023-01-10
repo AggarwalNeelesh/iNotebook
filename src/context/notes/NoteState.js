@@ -34,9 +34,9 @@ const NoteState = (props)=>{
           },
           body: JSON.stringify({title, description, tag}) // Sending data in body
         });
-
+        const json  = response.json();
         //Logic to add in client
-        console.log("Adding a new note");
+        console.log("Adding a new note"+json);
         const note = {
           "_id": "63b1d3wwewe2f90e5181d2365f532",
           "user": "63b09af1ff48f4207f885d05",
@@ -75,7 +75,7 @@ const NoteState = (props)=>{
         //API call : To update note
         const url = `${host}/api/notes/updatenote/${id}`;
         const response = await fetch(url, {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjNiMDlhZjFmZjQ4ZjQyMDdmODg1ZDA1In0sImlhdCI6MTY3MjUxODUzN30.ojsj1ZIoYvBq_ESQsmoYVz-oZh8dKMxLQch2c0Er10g'
@@ -83,16 +83,20 @@ const NoteState = (props)=>{
           body: JSON.stringify({title, description, tag}) // Sending data to be updated
         });
         const json =  response.json();
+        console.log(json);
 
+        let newNotes = JSON.parse(JSON.stringify(notes)) // Creating Deep copy of notes
         //Logic to edit in client
-        for (let index = 0; index < notes.length; index++) {
-          const element = notes[index];
+        for (let index = 0; index < newNotes.length; index++) {
+          const element = newNotes[index];
           if(element._id === id){
-            element.title = title;
-            element.description = description;
-            element.tag = tag;
+            newNotes[index].title = title;
+            newNotes[index].description = description;
+            newNotes[index].tag = tag;
+            break;
           }
         }
+        setNotes(newNotes);
       }
     return(
         // Whichever things we want to provide , put it inside value., 
