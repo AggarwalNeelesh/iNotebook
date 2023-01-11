@@ -11,15 +11,10 @@ const JWT_SECRET = "BlueMoonDevil";
 /////////// Route 1 /////////////////////////////
 // Create a User using : POST "/api/auth/createuser" . Dosen't require Auth
 // No login required
-router.post(
-  "/createuser",
-  [
-    // Array
+router.post("/createuser",[// Array
     body("email").isEmail(),
     body("name").isLength({ min: 3 }),
-    body("password").isLength({ min: 4 }),
-  ],
-  async (req, res) => {
+    body("password").isLength({ min: 4 }),],async (req, res) => {
     // If there are errors , return BAD request
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -34,7 +29,8 @@ router.post(
 
       const salt = await bcrypt.genSalt(10);
       securedPssword = await bcrypt.hash(req.body.password, salt);
-
+      
+      // creating user
       user = await User.create({
         name: req.body.name,
         email: req.body.email,

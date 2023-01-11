@@ -82,7 +82,7 @@ const NoteState = (props)=>{
           },
           body: JSON.stringify({title, description, tag}) // Sending data to be updated
         });
-        const json =  response.json();
+        const json =  await response.json();
         console.log(json);
 
         let newNotes = JSON.parse(JSON.stringify(notes)) // Creating Deep copy of notes
