@@ -45,26 +45,29 @@ const Notes = () => {
           <form>
             <div className="form-group">
               <label htmlFor="exampleInputEmail1">Title</label>
-              <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} onChange={onChange} aria-describedby="emailHelp" placeholder="Enter title"/>
+              <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} onChange={onChange} aria-describedby="emailHelp" placeholder="Enter title" required/>
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Description</label>
-              <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} placeholder="Description"/>
+              <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} placeholder="Description" minLength={5} required/>
             </div>
             <div className="form-group">
               <label htmlFor="exampleInputPassword1">Tag</label>
-              <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} placeholder="tag"/>
+              <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} placeholder="tag" required/>
             </div>
           </form>
           </div>
           <div className="modal-footer">
             <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
+            <button disabled={note.etitle.length<5||note.edescription.length<5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
           </div>
         </div>
       </div>
     </div>
     <div className='row'>
+        <div className="container" >
+          {notes.length===0 && 'No notes to display'}
+        </div>
         {notes.map((note) =>{
             // return note.title
             return <Noteitem key={note._id} updateNote={updateNote} note={note}/> ;
