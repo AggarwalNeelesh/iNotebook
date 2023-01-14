@@ -1,7 +1,7 @@
 import React ,{useState}from 'react'
 import { useNavigate  } from 'react-router-dom'
 
-const Signup = () => {
+const Signup = (props) => {
   const [credentials, setCredentials] = useState({name:"",email:"", password:"", cpassword:""})
     let navigate = useNavigate();
   const handleSubmit = async(e)=>{
@@ -16,11 +16,12 @@ const Signup = () => {
       const json = await response.json();
       console.log(json);
       if(json.success){
+        props.showAlert("Signup Successful", "success");
         //save the auth token and redirect
         localStorage.setItem('token', json.authToken);
         navigate("/");
       }else{
-        alert("User Already Exists");
+        props.showAlert("User Already Exists", "warning");
       }
 }
   const onChange = (e)=>{
