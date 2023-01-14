@@ -17,14 +17,16 @@ router.post("/createuser",[// Array
     body("password").isLength({ min: 4 }),],async (req, res) => {
     // If there are errors , return BAD request
     const errors = validationResult(req);
+    let success = false;
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success:success, errors: errors.array() });
     }
     try {
       //Check whether theuser with this email exist already
       let user = await User.findOne({ email: req.body.email });
+      
       if (user) {
-        return res.status(400).json({ error: "User Already exist" });
+        return res.status(400).json({success:success, error: "User Already exist" });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -43,9 +45,9 @@ router.post("/createuser",[// Array
           id: user.id,
         },
       };
-
+      success= true;
       const authToken = jwt.sign(data, JWT_SECRET);
-      res.json(authToken);
+      res.json({success,authToken});
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server error");
@@ -54,10 +56,7 @@ router.post("/createuser",[// Array
 );
 /////////// Route 2 /////////////////////////////
 // Authentication a User using : POST "/api/auth/login" .No login required
-router.post(
-  "/login",
-  [
-    // Array
+router.post("/login",[// Array
     body("email", "Enter a valid email").isEmail(),
     body("password", "Password cannot be blank").exists(),
   ],
