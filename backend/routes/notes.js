@@ -17,19 +17,25 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
     }
 });
 
+///////////////////////// Route 1 /////////////////////////////
+// Fetch All Global Notes using GET "/api/notes/fetchglobalnotes" Login required
+
+router.get("/fetchglobalnotes", fetchuser, async (req, res) => {
+    try {
+        const notes = await Notes.find({ tag: "global" });
+        res.json(notes);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server error");
+    }
+});
+
 ///////////////////////// Route 2 /////////////////////////////
 // Add a new Note using POST "/api/notes/addnote" Login required
 
-router.post(
-  "/addnote",
-  fetchuser,
-  [
-    // Array
+router.post("/addnote",fetchuser,[// Array
     body("title", "Enter a Valid Title").isLength({ min: 3 }),
-    body("description", "Description must be atleast 10 Characters").isLength({
-      min: 5,
-    })
-  ],
+    body("description", "Description must be atleast 10 Characters").isLength({min: 5,})],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

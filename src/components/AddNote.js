@@ -14,7 +14,7 @@ const AddNote = (props) => {
     }
     // Changing state of note when typing in textfield
     const onChange = (e)=>{
-      props.showAlert("Note Added Successfully", "success")
+      e.preventDefault();
         // ...note => jo chiz note me phele se hai vo rahe
         // baki usme ab ye chiz add karo ya overwrite karo
         setNote({...note, [e.target.name]:e.target.value})
@@ -38,7 +38,6 @@ const AddNote = (props) => {
         </div>
         <button disabled={note.title.length<5||note.description.length<5} type="submit" className="btn btn-primary my-3" onClick={handleClick}>Add Note</button>
       </form>
-      <h2>Your Notes</h2>
       </div>
     </div>
   )

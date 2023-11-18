@@ -9,8 +9,12 @@ const fetchuser = (req, res, next)=>{
         res.status(401).send({error:"Please Authenticate using a valid token"});
     }
     try {
-        const data = jwt.verify(token, JWT_SECRET)
-        req.user = data.user;
+        const verified_data = jwt.verify(token, JWT_SECRET)
+        if(verified_data){
+            req.user = verified_data.user;
+        }else{
+            res.status(401).send({error:"Please Authenticate using a valid token"});
+        }
         next(); // next is a fuction which will run after we fetch the user
         // next function is a function in calling program
     } catch (error) {
