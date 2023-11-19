@@ -29,6 +29,12 @@ function App() {
           <Navbar />
           <Alert alert={alert}/>
           <div className="container">
+            {localStorage.getItem('token')==null?
+            <Routes>
+              <Route exact path="/login" element={<Login showAlert={showAlert}/>} />
+              <Route path="*" element={<Signup showAlert={showAlert}/>} />
+            </Routes>
+            :
             <Routes>
               <Route exact path="/" element={<Home showAlert={showAlert}/>} />
               <Route exact path="/about" element={<About />} />
@@ -37,6 +43,8 @@ function App() {
               <Route exact path="/signup" element={<Signup showAlert={showAlert}/>} />
               <Route exact path="*" element={<Home showAlert={showAlert}/>} />
             </Routes>
+            }
+            
           </div>
         </Router>
       </NoteState>

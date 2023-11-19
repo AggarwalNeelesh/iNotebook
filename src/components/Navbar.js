@@ -1,10 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
 import React from "react";
 import { useState, useEffect } from "react";
-
+import { useNavigate  } from 'react-router-dom';
 
 const Navbar = () => {
   let location = useLocation();
+  let navigate = useNavigate();
   const [login, setlogin] = useState(false);
   useEffect(() => {
     console.log("Logout pressed");
@@ -52,7 +53,7 @@ const Navbar = () => {
           <Link className="btn btn-primary mx-1" to="/signup" role="button">Signup</Link>
         </form> : 
         <form className="form-inline my-2 my-lg-0">
-          <Link className="btn btn-primary mx-1" to="/login" onClick={(e)=>{localStorage.setItem('token', null);setlogin(false);}} role="button">Logout</Link>
+          <Link className="btn btn-primary mx-1" to="/login" onClick={(e)=>{localStorage.setItem('token', null);setlogin(false); navigate('/login');}} role="button">Logout</Link>
         </form>
         }
         
