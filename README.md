@@ -1,3 +1,7 @@
+# Preview of website
+<img width="959" alt="image" src="https://github.com/AggarwalNeelesh/iNotebook/assets/86107529/76c36684-57ef-459a-ae1f-c89b4b550f84">
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
