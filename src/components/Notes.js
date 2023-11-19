@@ -5,7 +5,9 @@ const Notes = (props) => {
     const context = useContext(noteContext);
     const {notes, getNotes, editNote} = context; // De structuring
     const [note, setNote] = useState({id:"",etitle:"", edescription:"", etag:""});
-    n
+    useEffect(() => {
+      getNotes(props.notetype);
+    },[])
     const ref = useRef(null)
     const refClose = useRef(null)
     const updateNote =(currentNote)=>{

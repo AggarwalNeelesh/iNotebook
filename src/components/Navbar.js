@@ -13,8 +13,8 @@ const Navbar = () => {
   }, [login])
   
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-      <Link className="navbar-brand" to="/">
+    <nav className="navbar navbar-expand-lg navbar-light bg-dark" style={{'color': 'white'}}>
+      <Link className="navbar-brand" to="/" style={{'color': 'white', 'fontSize':'24px'}}>
         iNotebook
       </Link>
       <button
@@ -32,17 +32,17 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className={`nav-item ${location.pathname==='/'? "active":""}`}>
-            <Link className="nav-link" to="/">
+            <Link className="nav-link" to="/" style={{'color': 'white'}}>
               Home <span className="sr-only">(current)</span>
             </Link>
           </li>
           <li className={`nav-item ${location.pathname==='/about'? "active":""}`}>
-            <Link className="nav-link" to="/about">
+            <Link className="nav-link" to="/about" style={{'color': 'white'}}>
               About <span className="sr-only">(current)</span>
             </Link>
           </li>
           <li className={`nav-item ${location.pathname==='/globalnotes'? "active":""}`}>
-            <Link className="nav-link" to="/globalnotes">
+            <Link className="nav-link" to="/globalnotes" style={{'color': 'white'}}>
               Global Notes <span className="sr-only">(current)</span>
             </Link>
           </li>
